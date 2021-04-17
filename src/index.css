@@ -22,11 +22,12 @@ body {
 @media screen and (min-width: 768px) {
   .mobilelist {
     grid-template-columns: repeat(3, 1fr);
+    align-items: start;
   }
 }
 
 .item {
-  background: #fff;
+  background: #fd34;
   border-radius: 1rem;
   padding: 1rem 2rem;
 }

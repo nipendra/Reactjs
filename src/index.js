@@ -19,7 +19,14 @@ function Mobile(){
        <Item brand="Reno"/>
        <Item brand="MI"/>
        <Item brand="None"/>
-       <Item brand="X"/>
+       <Item brand="X">
+            {/* // given p tage will be children for Item componet */}
+        <p>Lorem ipsum, or lipsum as it is sometimes known, 
+            is dummy text used in laying out print, graphic or
+            web designs. The passage is attributed to an unknown
+            </p>
+
+       </Item>
         </section>
     </React.Fragment>
     )   // return React.createElement('h1', {} , "hello") 
@@ -32,6 +39,8 @@ const Item  = (props) => {
         <article className="item">
         {/* <Title brand={props.brand}/> */}
         <Title brand={brand} color="red"/>
+        {/* // children prop for componet */}
+        {props.children} 
         <Image />
          </article>
     )
