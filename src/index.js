@@ -1,21 +1,44 @@
 import React from 'react';
 import ReactDom from 'react-dom';
 
+//css
+import './index.css'
+
 // stateless functioal componet
 // always return JSX
 
-function Greeting(){
-    // don't use div instread use React.Fragment or shorthand for this  <>
+function Mobile(){
+    // don't use div instead use React.Fragment or shorthand for this  <>
     return (
      <React.Fragment>
-        <Person />
-         <h4>Hello! this is first component</h4>
+        <h1>This is a mobile list</h1>
+       <section className="mobilelist">
+       <Item />
+       <Item />
+       <Item />
+       <Item />
+       <Item />
+       <Item />
+        <Item />
+       <Item />
+        </section>
     </React.Fragment>
     )   // return React.createElement('h1', {} , "hello") 
 }
 
-const Person  = () => {
-    return <h2>Nipendra Singh</h2>;
+const Item  = () => {
+    return <article className="item">
+        <Title />
+        <Image />
+    </article>
 }
 
-ReactDom.render(<Greeting/>, document.getElementById('root'));
+const Image = () => {
+    return <img src="https://images-eu.ssl-images-amazon.com/images/I/71fumGFEU%2BL._AC_UL115_.jpg" alt="mobile" />
+}
+
+const Title = () => {
+    return <p>Xiaomi Mobile</p>
+}
+
+ReactDom.render(<Mobile/>, document.getElementById('root'));
