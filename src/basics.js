@@ -1,14 +1,12 @@
 import React from 'react';
 import ReactDom from 'react-dom';
 
-import {products} from './Items';
 //css
 import './index.css'
 
 // stateless functioal componet
 // always return JSX
 
-const Products = products;
 const heading = 'This is a mobile list';
 function Mobile(){
     // don't use div instead use React.Fragment or shorthand for this  <>
@@ -16,14 +14,12 @@ function Mobile(){
      <React.Fragment>
         <h1>{heading.toUpperCase()}</h1>
        <section className="mobilelist">
-        {
-            Products.map((item, index) => {
-                return <Item {...item} />
-            })
-        }
-       
-
-       <Item {...Products[0]}>
+       <Item brand="Xiomi"/>
+       <Item brand="Oppo"/>
+       <Item brand="Reno"/>
+       <Item brand="MI"/>
+       <Item brand="None"/>
+       <Item brand="X">
             {/* // given p tage will be children for Item componet */}
         <p>Lorem ipsum, or lipsum as it is sometimes known, 
             is dummy text used in laying out print, graphic or
@@ -37,20 +33,21 @@ function Mobile(){
 }
 
 const Item  = (props) => {
-    const {brand, img , name, price} = props
+    // console.log(props);
+    const {brand} = props
     return (
         <article className="item">
         {/* <Title brand={props.brand}/> */}
-        <Title brand={brand} name={name}/>
+        <Title brand={brand} color="red"/>
         {/* // children prop for componet */}
         {props.children} 
-        <Image img={img}/>
+        <Image />
          </article>
     )
 }
 
-const Image = (img) => {
-    return <img src={img} />
+const Image = () => {
+    return <img src="https://images-eu.ssl-images-amazon.com/images/I/71fumGFEU%2BL._AC_UL115_.jpg" alt="mobile" />
     
 }
 
@@ -61,13 +58,10 @@ const Image = (img) => {
 // we can also do destructuring of props like this 
 
 
-const Title = ({brand, name}) => {
+const Title = ({brand, color}) => {
+
     return (
-       <React.Fragment>
-        <h3>Brand: {brand}  </h3>
-        <p>Name: {name}</p>
-       </React.Fragment>
-        )
+        <p>{brand} Mobile and color is {color}</p>)
 }
 
 ReactDom.render(<Mobile/>, document.getElementById('root'));
