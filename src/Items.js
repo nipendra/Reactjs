@@ -31,7 +31,7 @@ export const Items = [
     },
       {
         brand: 'Apple',
-        img: 'https://rukminim1.flixcart.com/image/612/612/kg8avm80/mobile/5/z/w/apple-iphone-12-pro-max-dummyapplefsn-original-imafwgcy4h9c9rcm.jpeg?q=70'
+        img: 'https://rukminim1.flixcart.com/image/612/612/kg8avm80/mobile/5/z/w/apple-iphone-12-pro-max-dummyapplefsn-original-imafwgcy4h9c9rcm.jpeg?q=70',
         name: 'Iphone 12 pro',
         price: '1229000'
     }
