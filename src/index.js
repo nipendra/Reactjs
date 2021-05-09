@@ -1,5 +1,5 @@
 import React from 'react';
 import ReactDom from 'react-dom';
-import App from './GithubCard/githubcard'
+import StarMatch from './StarMatch/App'
 
-ReactDom.render(<App title="The Github Cards App"/>, document.getElementById('root'));
+ReactDom.render(<StarMatch />, document.getElementById('root'));
