@@ -8,6 +8,7 @@ body {
   text-align: center;
 }
 .github-profile {
+  display: block;
   float: left;
   margin: 10px;
   padding: 5px;
