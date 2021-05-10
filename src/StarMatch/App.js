@@ -16,30 +16,44 @@ const PlayNumber = (props) => {
 
 const PlayAgain = (props) => {
     return (
-        <button onClick={props.onClick}>Play Again</button>
+        <div className="game-done">
+            <div 
+                className="message"
+                style={{ color: props.gameStatus === 'lost' ? 'red' : 'green'}}
+            >
+                {props.gameStatus === 'lost' ? 'Game Over' : 'Nice'}
+            </div>
+
+	        <button onClick={props.onClick}>Play Again</button>
+        </div>
     )
 }
 
-const StartDisplay = (props) => {
+const StarsDisplay = (props) => {
 
     return (
         <>
-        { utils.range(1,props.Stars).map(star => <div key={star} className="star" />)}
+
+        {utils.range(1,props.Stars).map(
+            star => <div key={star} className="star" />
+        )}
         </>
     )
 };
-const StarMatch = () => {
+const Game = (props) => {
     const [Stars, setStars] = useState(utils.random(1,9));
     const [AvailableNums, setAvailableNums] = useState(utils.range(1,9));
     const [CandidateNums, setCandidateNums] = useState([]);
     const [secondLeft, setSecondLeft] = useState(10);
+
     useEffect(() => {
-        if(secondLeft>0){
-            setTimeout(() => {
-                setSecondLeft(secondLeft-1);
-            },1000);
+        if (secondLeft > 0 && AvailableNums.length > 0) {
+        const timerId = setTimeout(() => {
+            setSecondLeft(secondLeft - 1);
+        }, 1000);
+            return () => clearTimeout(timerId);
         }
-    })
+    });  
 
     const candidateAreWrong = utils.sum(CandidateNums)>Stars;
     const numberStatus = (number) => {
@@ -73,11 +87,10 @@ const StarMatch = () => {
 
     
     }
-    const ResetGame = () =>{
-        setStars(utils.random(1,9));
-        setAvailableNums(utils.range(1,9));
-        setCandidateNums([]);
-    }
+
+    const gameStatus = AvailableNums.length === 0  ? 'won'
+    : secondLeft === 0 ? 'lost' : 'active' 
+    
   return (
     <div className="game">
       <div className="help">
@@ -86,11 +99,11 @@ const StarMatch = () => {
       <div className="body">
         <div className="left">
          {
-              AvailableNums.length ===0 ? (
-                  <PlayAgain onClick={ResetGame}/>
-              ) :
-               (<StartDisplay Stars={Stars}/>)
-         }
+        gameStatus !== 'active' ? (
+          	<PlayAgain onClick={props.startNewGame} gameStatus={gameStatus} />
+          ) : (
+          	<StarsDisplay Stars={Stars} />
+          )}
          
         </div>
         <div className="right">
@@ -147,5 +160,10 @@ const utils = {
     return sums[utils.random(0, sums.length - 1)];
   },
 };
+// unmouting and remouting using key attribute to reset all previous data
+const StarMatch = () => {
+    const [gameID, setgameID]=useState(1);
 
+    return <Game key={gameID} startNewGame={() => setgameID(gameID+1)}/>
+}
 export default StarMatch;
